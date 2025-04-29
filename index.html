@@ -43,6 +43,7 @@
             </div>
         </div>
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         let todos = [];
@@ -86,3 +87,30 @@
                         <button class="btn btn-sm btn-warning" onclick="editTodo(${index})">Edit</button>
                         <button class="btn btn-sm btn-danger" onclick="deleteTodo(${index})">Hapus</button>
                     </td>
+                `;
+
+                tbody.appendChild(tr);
+            });
+        }
+
+        function toggleComplete(index) {
+            todos[index].completed = !todos[index].completed;
+            renderTable();
+        }
+
+        function editTodo(index) {
+            const todo = todos[index];
+            document.getElementById('todo-name').value = todo.name;
+            document.getElementById('todo-date').value = todo.date;
+            editIndex = index;
+        }
+
+        function deleteTodo(index) {
+            if (confirm('Apakah Anda yakin ingin menghapus kegiatan ini?')) {
+                todos.splice(index, 1);
+                renderTable();
+            }
+        }
+    </script>
+</body>
+</html>
